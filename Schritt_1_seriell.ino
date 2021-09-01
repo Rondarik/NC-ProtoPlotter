@@ -30,53 +30,19 @@ void loop() {
 
   Serial.print("speed: ");
   Serial.println(mySpeed);
-  // mySpeed = abs(xValuehalbe / myTeiler);
   if (mySpeed != 0) {
     myStepper.setSpeed(abs(mySpeed));
   }
   
-//  Serial.println(mySpeed);
-//  Serial.println(xValuehalbe);
-
   int steps = calculateSteps(mySpeed);
   myStepper.step(steps);
   
   Serial.print("steps: ");
   Serial.println(steps);
   stepCounter += steps;
-  /*
-    if ((xValuehalbe > 25) && (stepCounter <= maxSteps)) {
-      if (stepCounter <= (maxSteps-mySpeed*2)) {
-        myStepper.step(mySpeed*2);
-        stepCounter += (mySpeed*2);
-      } else {
-        myStepper.step(maxSteps-stepCounter);
-        stepCounter += (maxSteps-stepCounter);
-      }
-    } else if ((xValuehalbe < -25) && (stepCounter >= 0)) {
-      if (stepCounter >= mySpeed*2) {
-        myStepper.step(-mySpeed*2);
-        stepCounter -= (mySpeed*2);
-      } else {
-        myStepper.step(-stepCounter);    
-        stepCounter -= (stepCounter);
-      }
-    } 
-    */
-    Serial.print("position: ");
-  Serial.println(stepCounter);
-
- 
-/*  bool buttonPressed = digitalRead(Switch) == LOW;
-  if (buttonPressed) {
-    Serial.println("Button pressed");
-  }
-*/
-
-String direction = speed < 0
-? "left"
-: "right";
-   
+  
+  Serial.print("position: ");
+  Serial.println(stepCounter);     
 }
 
 int calculateSteps(int speed) {
